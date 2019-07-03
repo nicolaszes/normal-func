@@ -9,6 +9,6 @@ describe("NormalFunc test", () => {
   })
 
   it("NormalFunc is instantiable", () => {
-    expect(new NormalFuncClass()).toBeInstanceOf(NormalFuncClass)
+    expect(new NormalFuncClass(4)).toBeInstanceOf(NormalFuncClass)
   })
 })
