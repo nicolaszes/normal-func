@@ -1,4 +1,4 @@
-export { urlParse } from './lint/urlParse'
+export { urlParse } from './urlParse'
 
 export const thousandSesymbol = (val: number): string => {
   const numberREG = /(?<=\b(?<!\.)\d*)\B(?=(\d{3})+(?=\b))/g

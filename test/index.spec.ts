@@ -1,6 +1,5 @@
 import NormalFuncClass, { thousandSesymbol } from '../src/index'
 
-const UrlObj = {}
 /**
  * Dummy test
  */
