@@ -1,14 +1,34 @@
-import NormalFuncClass from '../src/index'
+import NormalFuncClass, { thousandSesymbol } from '../src/index'
 
+const UrlObj = {}
 /**
  * Dummy test
  */
-describe("NormalFunc test", () => {
-  it("works if true is truthy", () => {
+describe('NormalFunc test', () => {
+  it('works if true is truthy', () => {
     expect(true).toBeTruthy()
   })
 
-  it("NormalFunc is instantiable", () => {
+  it('NormalFunc is instantiable', () => {
     expect(new NormalFuncClass(4)).toBeInstanceOf(NormalFuncClass)
+  })
+})
+
+// thousand sesymbol test
+describe('thousandSesymbol match number', () => {
+  it('number less than 1', () => {
+    expect(thousandSesymbol(0.123456)).toBe('0.123456')
+  })
+
+  it('number morn than 1', () => {
+    expect(thousandSesymbol(1.23456)).toBe('1.23456')
+  })
+
+  it('number morn than 1000', () => {
+    expect(thousandSesymbol(123456.789)).toBe('123,456.789')
+  })
+
+  it('minus number', () => {
+    expect(thousandSesymbol(-123456.78901)).toBe('-123,456.78901')
   })
 })
