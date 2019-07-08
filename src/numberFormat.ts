@@ -26,7 +26,7 @@ export const floatReserverd = (
   val: ReservedType,
   target: number = 2,
   ceil: Boolean = false
-) => {
+): number => {
   if (typeof val !== 'number') {
     throw new Error('val must be number')
   }
