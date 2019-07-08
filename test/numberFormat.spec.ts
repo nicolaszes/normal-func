@@ -1,4 +1,4 @@
-import { thousandSesymbol } from '../src/thounsandSesymbol'
+import { thousandSesymbol } from '../src/numberFormat'
 
 // thousand sesymbol test
 describe('thousandSesymbol match number', () => {

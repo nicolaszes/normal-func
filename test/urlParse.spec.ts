@@ -1,4 +1,4 @@
-import { urlParse } from '../src/index'
+import { urlParse } from '../src/urlParse'
 
 // thousand sesymbol test
 describe('urlParse match number', () => {
