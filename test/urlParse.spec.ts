@@ -1,7 +1,7 @@
-import { urlParse } from '../src/urlParse'
+import { urlParse, getUrlParams } from '../src/urlParse'
 
-// thousand sesymbol test
-describe('urlParse match number', () => {
+// url parse test
+describe('urlParse match', () => {
   it('return object', () => {
     expect(urlParse('')).toEqual(expect.objectContaining({}))
   })
@@ -18,6 +18,30 @@ describe('urlParse match number', () => {
         port: ':8080',
         protocol: 'http:',
         search: '?name=1&password=2'
+      })
+    )
+  })
+})
+
+// url parse test
+describe('getUrlParams match', () => {
+  it('throw error', () => {
+    expect(() => getUrlParams('')).toThrow()
+  })
+
+  it('return empty object', () => {
+    expect(getUrlParams('http://test.com:8080')).toEqual(
+      expect.objectContaining({})
+    )
+  })
+
+  it('return params object', () => {
+    expect(
+      getUrlParams('http://test.com:8080?name=1&password=2#page1')
+    ).toEqual(
+      expect.objectContaining({
+        name: '1',
+        password: '2'
       })
     )
   })
