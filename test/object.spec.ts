@@ -6,7 +6,7 @@ describe('copy obj test', () => {
   })
 
   it('test copy array', () => {
-    expect(copyObj([1, 2])).toEqual([1, 2])
+    expect(copyObj([1, { a: { b: 2 } }])).toEqual([1, { a: { b: 2 } }])
   })
 
   it('test obj hasOwnProperty', () => {
