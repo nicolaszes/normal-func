@@ -1,20 +1,24 @@
 interface DeepArray<T> extends Array<T | DeepArray<T>> {}
-type FlattenDeepArr = DeepArray<number> | undefined | any
+type FlattenDeepArr = DeepArray<any> | undefined | any
 
 /**
  * 数组降维
- * @param arr 数组
+ * @param {Array} arr 数组
+ * @param {Number} depth 降维深度
  */
-export const flattenDeep = (arr: FlattenDeepArr): Array<number> => {
-  // if (!Array.isArray(arr)) {
-  //   throw new Error('must be arr')
-  // }
+export const flattenDeep = (
+  arr: FlattenDeepArr,
+  depth: number = Infinity
+): Array<any> => {
+  if (!Array.isArray(arr)) {
+    throw new Error('must be arr')
+  }
 
   // if (typeof Array.prototype.flat !== 'function') {
-  //   return arr.flat(Infinity)
+  //   return Array.isArray(arr)
+  //     ? arr.reduce((a, b) => [...a, ...flattenDeep(b)], [])
+  //     : [arr]
   // }
 
-  return Array.isArray(arr)
-    ? arr.reduce((a, b) => [...a, ...flattenDeep(b)], [])
-    : [arr]
+  return arr.flat(depth)
 }
