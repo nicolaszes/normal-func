@@ -15,6 +15,10 @@ export const emailValidate = (email: EmailType): Boolean => {
 
 type IDCardType = string | undefined | null
 
+/**
+ * 第二代身份证校验
+ * @param {String} Idcard 身份证号码
+ */
 export const IdCardValidate = (Idcard: IDCardType): Boolean => {
   if (typeof Idcard !== 'string') {
     throw new Error('idcard must be string')
