@@ -22,3 +22,35 @@ export const flattenDeep = (
 
   return arr.flat(depth)
 }
+
+type ArrType = Array<number> | undefined | null
+
+/**
+ * 求两个数组的最长公共子序列
+ * @param {Array} arr1
+ * @param {Array} arr2
+ */
+export const intersect = (arr1: ArrType, arr2: ArrType): Array<number> => {
+  if (!Array.isArray(arr1) || !Array.isArray(arr2)) {
+    throw new Error('must be arr')
+  }
+
+  const map: any = {}
+  const res: Array<number> = []
+
+  for (let n of arr1) {
+    if (map[n]) {
+      map[n]++
+    } else {
+      map[n] = 1
+    }
+  }
+
+  for (let n of arr2) {
+    if (map[n] > 0) {
+      res.push(n)
+      map[n]--
+    }
+  }
+  return res
+}

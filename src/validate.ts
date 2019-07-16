@@ -76,3 +76,18 @@ export const IdCardValidate = (Idcard: IDCardType): Boolean => {
 
   return true
 }
+
+// type IpAddressType = string | undefined | null
+
+// /**
+//  * ip 地址正则校验
+//  * @param {String} ip
+//  */
+// export const IpAddressValidate = (ip: IpAddressType): Boolean => {
+//   if (typeof ip !== 'string') {
+//     throw new Error('idcard must be string')
+//   }
+
+//   // const IpAddresReg: RegExp = //
+//   return true
+// }
