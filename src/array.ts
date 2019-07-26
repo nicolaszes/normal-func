@@ -35,22 +35,23 @@ export const intersect = (arr1: ArrType, arr2: ArrType): Array<number> => {
     throw new Error('must be arr')
   }
 
-  const map: any = {}
+  const map: Map<string, number> = new Map()
   const res: Array<number> = []
 
   for (let n of arr1) {
-    if (map[n]) {
-      map[n]++
+    if (map.get(String(n))) {
+      map.set(String(n), Number(map.get(String(n))) + 1)
     } else {
-      map[n] = 1
+      map.set(String(n), 1)
     }
   }
 
   for (let n of arr2) {
-    if (map[n] > 0) {
+    if (Number(map.get(String(n))) > 0) {
       res.push(n)
-      map[n]--
+      map.set(String(n), Number(map.get(String(n))) - 1)
     }
   }
+
   return res
 }
