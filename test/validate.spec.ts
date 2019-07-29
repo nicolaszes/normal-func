@@ -1,4 +1,8 @@
-import { emailValidate, IdCardValidate } from '../src/validate'
+import {
+  emailValidate,
+  IdCardValidate,
+  MacAddressValidate
+} from '../src/validate'
 
 // email validate test
 describe('email validate match', () => {
@@ -47,5 +51,24 @@ describe('IdCardValidate match', () => {
 
   it('return true', () => {
     expect(IdCardValidate('110123199601025796')).toBeTruthy()
+  })
+})
+
+// mac address test
+describe('mac address validate match', () => {
+  it('throw error', () => {
+    expect(() => MacAddressValidate(null || undefined)).toThrow()
+  })
+
+  it('empty str return false', () => {
+    expect(MacAddressValidate('')).toBeFalsy()
+  })
+
+  it('not enough length return false', () => {
+    expect(MacAddressValidate('58:E8:76:83')).toBeFalsy()
+  })
+
+  it('return true', () => {
+    expect(MacAddressValidate('58:E8:76:83:A2:C7')).toBeTruthy()
   })
 })

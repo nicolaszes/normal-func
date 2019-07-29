@@ -77,17 +77,26 @@ export const IdCardValidate = (Idcard: IDCardType): Boolean => {
   return true
 }
 
-// type IpAddressType = string | undefined | null
+type MacAddressType = string | undefined | null
 
-// /**
-//  * ip 地址正则校验
-//  * @param {String} ip
-//  */
-// export const IpAddressValidate = (ip: IpAddressType): Boolean => {
-//   if (typeof ip !== 'string') {
-//     throw new Error('idcard must be string')
-//   }
+/**
+ * mac 地址正则校验
+ * @param {String} macAddress
+ */
+export const MacAddressValidate = (macAddress: MacAddressType): Boolean => {
+  if (typeof macAddress !== 'string') {
+    throw new Error('ip address must be string')
+  }
 
-//   // const IpAddresReg: RegExp = //
-//   return true
-// }
+  /**
+   * Mac地址有两种：
+   * 58:E8:76:83:A2:C7 | 58-E8-76-83-A2-C7
+   * 使用非捕获组来进行优化
+   */
+  const MacAddressReg: RegExp = /(?:(?:[A-Fa-f0-9]{2}:)|(?:[A-Fa-f0-9]{2}-)){5}[A-Fa-f0-9]{2}/
+  if (!MacAddressReg.test(macAddress)) {
+    return false
+  }
+
+  return true
+}
