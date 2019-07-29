@@ -1,10 +1,10 @@
-type EmailType = string | undefined | null
+type BaseType = string | undefined | null
 
 /**
  * 校验是否满足邮箱格式
  * @param {String} email
  */
-export const emailValidate = (email: EmailType): Boolean => {
+export const emailValidate = (email: BaseType): Boolean => {
   if (typeof email !== 'string') {
     throw new Error('email must be string')
   }
@@ -13,13 +13,11 @@ export const emailValidate = (email: EmailType): Boolean => {
   return EmailReg.test(email.trim())
 }
 
-type IDCardType = string | undefined | null
-
 /**
  * 第二代身份证校验
- * @param {String} Idcard 身份证号码
+ * @param {String | Number} Idcard 身份证号码
  */
-export const IdCardValidate = (Idcard: IDCardType): Boolean => {
+export const IdCardValidate = (Idcard: BaseType): Boolean => {
   if (typeof Idcard !== 'string') {
     throw new Error('idcard must be string')
   }
@@ -77,15 +75,13 @@ export const IdCardValidate = (Idcard: IDCardType): Boolean => {
   return true
 }
 
-type MacAddressType = string | undefined | null
-
 /**
  * mac 地址正则校验
  * @param {String} macAddress
  */
-export const MacAddressValidate = (macAddress: MacAddressType): Boolean => {
+export const macAddressValidate = (macAddress: BaseType): Boolean => {
   if (typeof macAddress !== 'string') {
-    throw new Error('ip address must be string')
+    throw new Error('mac address must be string')
   }
 
   /**
@@ -93,8 +89,25 @@ export const MacAddressValidate = (macAddress: MacAddressType): Boolean => {
    * 58:E8:76:83:A2:C7 | 58-E8-76-83-A2-C7
    * 使用非捕获组来进行优化
    */
-  const MacAddressReg: RegExp = /(?:(?:[A-Fa-f0-9]{2}:)|(?:[A-Fa-f0-9]{2}-)){5}[A-Fa-f0-9]{2}/
+  const MacAddressReg: RegExp = /^(?:(?:[A-Fa-f0-9]{2}:)|(?:[A-Fa-f0-9]{2}-)){5}[A-Fa-f0-9]{2}$/
   if (!MacAddressReg.test(macAddress)) {
+    return false
+  }
+
+  return true
+}
+
+/**
+ * longitude validate
+ * @param {String | Number} lng
+ */
+export const longitudeValidate = (lng: BaseType | number): Boolean => {
+  if (typeof lng !== 'string' && typeof lng !== 'number') {
+    throw new Error('longitude should be string or number')
+  }
+
+  const LongitudeReg: RegExp = /^[-|+]?(?:0?\d{1,2}|0?\d{1,2}\.\d{1,15}|1[0-7]?\d{1}|1[0-7]?\d{1}\.\d{1,15}|180|180\.0{1,15})$/
+  if (!LongitudeReg.test(String(lng))) {
     return false
   }
 

@@ -1,7 +1,8 @@
 import {
   emailValidate,
   IdCardValidate,
-  MacAddressValidate
+  macAddressValidate,
+  longitudeValidate
 } from '../src/validate'
 
 // email validate test
@@ -49,7 +50,15 @@ describe('IdCardValidate match', () => {
     expect(IdCardValidate('120123199602292322')).toBeFalsy()
   })
 
-  it('return true', () => {
+  it('wrong last code return false', () => {
+    expect(IdCardValidate('12012319960229234x')).toBeFalsy()
+  })
+
+  it('number outrange input return true', () => {
+    expect(IdCardValidate(String(110123199601025796))).toBeFalsy()
+  })
+
+  it('string input return true', () => {
     expect(IdCardValidate('110123199601025796')).toBeTruthy()
   })
 })
@@ -57,18 +66,49 @@ describe('IdCardValidate match', () => {
 // mac address test
 describe('mac address validate match', () => {
   it('throw error', () => {
-    expect(() => MacAddressValidate(null || undefined)).toThrow()
+    expect(() => macAddressValidate(null || undefined)).toThrow()
   })
 
   it('empty str return false', () => {
-    expect(MacAddressValidate('')).toBeFalsy()
+    expect(macAddressValidate('')).toBeFalsy()
   })
 
   it('not enough length return false', () => {
-    expect(MacAddressValidate('58:E8:76:83')).toBeFalsy()
+    expect(macAddressValidate('58:E8:76:83')).toBeFalsy()
   })
 
   it('return true', () => {
-    expect(MacAddressValidate('58:E8:76:83:A2:C7')).toBeTruthy()
+    expect(macAddressValidate('58:E8:76:83:A2:C7')).toBeTruthy()
+  })
+})
+
+// longitude test
+describe('longitude validate match', () => {
+  it('throw error', () => {
+    expect(() => longitudeValidate(null || undefined)).toThrow()
+  })
+
+  it('empty str return false', () => {
+    expect(longitudeValidate('')).toBeFalsy()
+  })
+
+  it('wrong char length return false', () => {
+    expect(longitudeValidate('?180')).toBeFalsy()
+  })
+
+  it('outrange integer number length return false', () => {
+    expect(longitudeValidate(181)).toBeFalsy()
+  })
+
+  it('outrange float number length return false', () => {
+    expect(longitudeValidate(180.3131)).toBeFalsy()
+  })
+
+  it('return true', () => {
+    expect(longitudeValidate(120.8675)).toBeTruthy()
+  })
+
+  it('return true', () => {
+    expect(longitudeValidate('120.8675')).toBeTruthy()
   })
 })
