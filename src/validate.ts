@@ -106,8 +106,25 @@ export const longitudeValidate = (lng: BaseType | number): Boolean => {
     throw new Error('longitude should be string or number')
   }
 
-  const LongitudeReg: RegExp = /^[-|+]?(?:0?\d{1,2}|0?\d{1,2}\.\d{1,15}|1[0-7]?\d{1}|1[0-7]?\d{1}\.\d{1,15}|180|180\.0{1,15})$/
+  const LongitudeReg: RegExp = /^[\-|\+]?(?:0?\d{1,2}|0?\d{1,2}\.\d{1,15}|1[0-7]?\d{1}|1[0-7]?\d{1}\.\d{1,15}|180|180\.0{1,15})$/
   if (!LongitudeReg.test(String(lng))) {
+    return false
+  }
+
+  return true
+}
+
+/**
+ * latitude validate
+ * @param {String | Number} lat
+ */
+export const latitudeValidate = (lat: BaseType | number): Boolean => {
+  if (typeof lat !== 'string' && typeof lat !== 'number') {
+    throw new Error('longitude should be string or number')
+  }
+
+  const LatitudeReg: RegExp = /^[\-|\+]?([0-8]?\d{1}|[0-8]?\d{1}\.\d{1,15}|90|90\.0{1,15})$/
+  if (!LatitudeReg.test(String(lat))) {
     return false
   }
 

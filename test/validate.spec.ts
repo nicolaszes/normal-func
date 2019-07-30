@@ -2,7 +2,8 @@ import {
   emailValidate,
   IdCardValidate,
   macAddressValidate,
-  longitudeValidate
+  longitudeValidate,
+  latitudeValidate
 } from '../src/validate'
 
 // email validate test
@@ -110,5 +111,36 @@ describe('longitude validate match', () => {
 
   it('return true', () => {
     expect(longitudeValidate('120.8675')).toBeTruthy()
+  })
+})
+
+// latitude test
+describe('latitude validate match', () => {
+  it('throw error', () => {
+    expect(() => latitudeValidate(null || undefined)).toThrow()
+  })
+
+  it('empty str return false', () => {
+    expect(latitudeValidate('')).toBeFalsy()
+  })
+
+  it('wrong char length return false', () => {
+    expect(latitudeValidate('?90')).toBeFalsy()
+  })
+
+  it('outrange integer number length return false', () => {
+    expect(latitudeValidate(91)).toBeFalsy()
+  })
+
+  it('outrange float number length return false', () => {
+    expect(latitudeValidate(90.1)).toBeFalsy()
+  })
+
+  it('return true', () => {
+    expect(latitudeValidate(12.8675)).toBeTruthy()
+  })
+
+  it('return true', () => {
+    expect(latitudeValidate('12.8675')).toBeTruthy()
   })
 })
